@@ -1,10 +1,13 @@
+
+
+
 {{--Hello I am blade Template!--}}
 <br>
 {{--@isset($name)
 The name is: {{$name}}
 @endisset
 --}}
-<div>
+
     {{--@if(count($tasks))
         <div>There are tasks</div>
         <div>There are {{count($tasks)}} tasks</div>
@@ -20,14 +23,19 @@ The name is: {{$name}}
 
     --}}
 
-    @forelse ($tasks as $task)
-        <div>
-            <a href="{{ route('tasks.show', ['id' => $task->id])}}">{{ $task->title}}</a>    
-        </div>
-    @empty
-        <div>No tasks</div>
-    @endforelse
+    @extends('layouts.app')
+    @section('title','laravel task list app')
+
+    @section('content')
+        @forelse ($tasks as $task)
+            <div>
+                <a href="{{ route('tasks.show', ['id' => $task->id])}}">{{ $task->title}}</a>    
+            </div>
+        @empty
+            <div>No tasks</div>
+        @endforelse
+    @endsection
 
 
 
-</div>
+
